@@ -9,4 +9,4 @@ LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
 COPY --from=go /go/bin/tern /usr/local/bin
 ENV \
     PGDATA=/var/lib/postgresql/data/pgdata
-COPY files/01-schema.sql /docker-entrypoint-initdb.d/01-schema.sql
+COPY files /docker-entrypoint-initdb.d
