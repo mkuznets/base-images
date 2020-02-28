@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  nginx:
+    image: mkznts/nginx:latest
+    build: .
+    hostname: nginx
+    restart: always
+    container_name: nginx
+    networks:
+      - web
+    volumes:
+      - ./ssl:/ssl
+      - ./service-example.conf:/etc/nginx/service.conf
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - TZ=Europe/Moscow
+      - LE
+      - LE_EMAIL
+      - LE_FQDN
+      - LE_DNS_PROVIDER
+      - DO_PROPAGATION_TIMEOUT
+      - DO_AUTH_TOKEN
+
+networks:
+  web:
+    external: true
