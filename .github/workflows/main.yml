@@ -1,8 +1,6 @@
 name: build new image
 on:
   create:
-    branches:
-      - master
     tags:
       - '*'
 
