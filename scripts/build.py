@@ -65,7 +65,6 @@ if __name__ == '__main__':
             sys.exit(r.returncode)
 
         for tag in full_tags:
-            print(['docker', 'push', tag])
             r = subprocess.run(['docker', 'push', tag])
             if r.returncode:
                 sys.exit(r.returncode)
