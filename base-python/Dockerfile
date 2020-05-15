@@ -1,4 +1,4 @@
-FROM mkznts/base-ubuntu:latest
+FROM mkznts/base-ubuntu:0.1
 LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
 
 ENV \
