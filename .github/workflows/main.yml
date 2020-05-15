@@ -1,0 +1,22 @@
+name: build new image
+on:
+  create:
+    branches:
+      - master
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: build and push
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        run: |
+          cd $GITHUB_WORKSPACE
+          TAG=${GITHUB_REF##*/}
+          scripts/build.py $TAG
