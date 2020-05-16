@@ -10,6 +10,12 @@ TAG_RE = re.compile(r'([\w\-]+)-([\d.]+)$')
 
 HUB_USER = 'mkznts'
 
+
+def has_image(tag: str) -> bool:
+    output = subprocess.check_output(['docker', 'images', '--format', '{{.Tag}}', tag])
+    return bool(output.strip())
+
+
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
@@ -51,15 +57,20 @@ if __name__ == '__main__':
 
         latest_tag = full_tags[-1]
 
-        # Prefetch the latest image for build cache
-        subprocess.run(['docker', 'pull', latest_tag])
+        if not has_image(latest_tag):
+            # Prefetch the latest image for build cache
+            subprocess.run(['docker', 'pull', latest_tag])
+
+        cache_args = []
+        if has_image(latest_tag):
+            cache_args.extend(('--cache-from', latest_tag))
 
         tag_args = chain.from_iterable(('-t', t) for t in full_tags)
 
         r = subprocess.run([
             'docker', 'build', image, '-f', dockerfile,
-            '--cache-from', latest_tag,
-            *tag_args
+            *tag_args,
+            *cache_args,
         ])
         if r.returncode:
             sys.exit(r.returncode)
