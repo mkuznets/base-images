@@ -138,7 +138,7 @@ REPOS = [
     ),
     Repo(
         username="mkuznets",
-        password="GITHUB_TOKEN",
+        password="GHCR_TOKEN",
         server="ghcr.io",
         prefix="ghcr.io/mkuznets/",
     ),
