@@ -1,5 +1,7 @@
-FROM mkznts/base-ubuntu:0.1
+FROM mkznts/ubuntu:20.04-2020.09.20
+
 LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/mkuznets/base-images"
 
 ENV \
     PYTHONUNBUFFERED=1 \
