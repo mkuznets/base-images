@@ -2,7 +2,6 @@ FROM ubuntu:focal-20200916
 
 LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/mkuznets/base-images"
-LABEL org.opencontainers.image.description="Opinionated base image of the latest Ubuntu LTS"
 
 ADD etc /etc
 
