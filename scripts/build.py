@@ -133,8 +133,7 @@ REPOS = [
     Repo(
         username="mkznts",
         password="DOCKER_TOKEN",
-        server="registry-1.docker.io",
-        # server="docker.io",  # for private repositories
+        server="docker.io",
         prefix="mkznts/",
     ),
     Repo(
