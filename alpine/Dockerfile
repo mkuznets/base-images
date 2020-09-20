@@ -1,5 +1,7 @@
-FROM alpine:3.11.6
+FROM alpine:3.12.0
+
 LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/mkuznets/base-images"
 
 ENV \
     TERM=xterm-color \
