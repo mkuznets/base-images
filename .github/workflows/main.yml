@@ -16,5 +16,5 @@ jobs:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         run: |
           cd $GITHUB_WORKSPACE
-          TAG=${GITHUB_REF#refs/heads/}
+          TAG=${GITHUB_REF#refs/tags/}
           scripts/build.py $TAG
