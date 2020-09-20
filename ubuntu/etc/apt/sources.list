@@ -1,0 +1,8 @@
+deb mirror://mirrors.ubuntu.com/mirrors.txt VERSION main universe multiverse restricted
+deb-src mirror://mirrors.ubuntu.com/mirrors.txt VERSION main universe multiverse restricted
+
+deb mirror://mirrors.ubuntu.com/mirrors.txt VERSION-updates main universe multiverse restricted
+deb-src mirror://mirrors.ubuntu.com/mirrors.txt VERSION-updates main universe multiverse restricted
+
+deb mirror://mirrors.ubuntu.com/mirrors.txt VERSION-security main universe multiverse restricted
+deb-src mirror://mirrors.ubuntu.com/mirrors.txt VERSION-security main universe multiverse restricted

@@ -1,8 +1,0 @@
-deb mirror://mirrors.ubuntu.com/mirrors.txt focal main universe multiverse restricted
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt focal main universe multiverse restricted
-
-deb mirror://mirrors.ubuntu.com/mirrors.txt focal-updates main universe multiverse restricted
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt focal-updates main universe multiverse restricted
-
-deb mirror://mirrors.ubuntu.com/mirrors.txt focal-security main universe multiverse restricted
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt focal-security main universe multiverse restricted
