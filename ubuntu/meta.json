@@ -1,0 +1,38 @@
+[
+  {
+    "tag": "^20.10",
+    "file": "groovy.Dockerfile",
+    "aliases": [
+      "20.10"
+    ]
+  },
+  {
+    "tag": "^20.04",
+    "file": "focal.Dockerfile",
+    "aliases": [
+      "latest",
+      "20.04"
+    ]
+  },
+  {
+    "tag": "^18.04",
+    "file": "bionic.Dockerfile",
+    "aliases": [
+      "18.04"
+    ]
+  },
+  {
+    "tag": "^16.04",
+    "file": "xenial.Dockerfile",
+    "aliases": [
+      "16.04"
+    ]
+  },
+  {
+    "tag": "^14.04",
+    "file": "trusty.Dockerfile",
+    "aliases": [
+      "14.04"
+    ]
+  }
+]
