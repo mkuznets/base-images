@@ -25,7 +25,7 @@ fi
 
 echo "starting $*"
 if [ "${uid}" -eq "0" ]; then
-  su-exec "$APP_LOGIN" "$@"
+  exec su-exec "$APP_LOGIN" "$@"
 else
   exec "$@"
 fi

@@ -24,7 +24,7 @@ fi
 
 if [ "${uid}" -ne "$APP_UID" ] && [ "$SUBSTITUTE_USER" -eq "1" ]; then
   echo "running as $APP_LOGIN: $*"
-  su-exec "$APP_LOGIN" "$@"
+  exec su-exec "$APP_LOGIN" "$@"
 else
   echo "running as $(whoami): $*"
   exec "$@"
