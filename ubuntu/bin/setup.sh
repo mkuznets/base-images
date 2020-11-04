@@ -21,6 +21,23 @@ locale-gen --purge en_US.UTF-8
 ln -s /usr/bin/vi /usr/local/bin/vim
 
 # ------------------------------------------------------------------------------
+# su-exec
+
+PKGS="gcc curl make libc6-dev"
+apt-get install --yes --quiet --no-upgrade --no-install-recommends $PKGS
+
+curl -L "https://api.github.com/repos/ncopa/su-exec/tarball/212b75144bbc06722fbd7661f651390dc47a43d1" | tar -xz -C /tmp
+
+cd /tmp/ncopa-su-exec*
+make
+mv ./su-exec /usr/local/bin
+
+cd /
+rm -rf /tmp/ncopa-su-exec*
+apt-get remove --yes --quiet --purge $PKGS
+apt-get autoremove --purge --yes
+
+# ------------------------------------------------------------------------------
 # dumb-init
 
 CHECKSUM="
