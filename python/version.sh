@@ -2,15 +2,8 @@
 
 set -e
 
-IMAGE="python-$(date +%s)"
-docker build . -t "$IMAGE"
+PYTHON=$(python -c "import sys; print(\".\".join(map(str, sys.version_info[:2])))")
+UBUNTU=$(. /etc/os-release && echo $ID)
+DAY=$(TZ=Etc/UTC date '+%Y.%m.%d')
 
-version=$(
-  docker run --rm "$IMAGE" \
-    sh -c 'echo $(python -c "import sys; print(\".\".join(map(str, sys.version_info[:2])))")-$(. /etc/os-release && echo $ID)'
-)
-
-docker rmi "$IMAGE"
-
-echo
-echo "python/${version}-$(date '+%Y.%m.%d')"
+echo "${PYTHON}-${UBUNTU}-${DAY}"

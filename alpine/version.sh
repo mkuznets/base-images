@@ -1,16 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 set -e
 
-IMAGE="alpine-$(date +%s)"
-docker build . -t "$IMAGE"
+ALPINE=$(. /etc/os-release && echo $VERSION_ID | cut -f1,2 -d".")
+DAY=$(TZ=Etc/UTC date '+%Y.%m.%d')
 
-version=$(
-  docker run --rm "$IMAGE" \
-    sh -c 'echo $(. /etc/os-release && echo $VERSION_ID | cut -f1,2 -d".")'
-)
-
-docker rmi "$IMAGE"
-
-echo
-echo "alpine/${version}-$(date '+%Y.%m.%d')"
+echo "${ALPINE}-${DAY}"
