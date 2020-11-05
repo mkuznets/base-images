@@ -1,4 +1,4 @@
-FROM mkznts/ubuntu:20.04-2020.09.20
+FROM mkznts/ubuntu:20.04-2020.11.04
 
 LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/mkuznets/base-images"
@@ -33,15 +33,6 @@ RUN \
     \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-RUN \
-    git clone https://github.com/ncopa/su-exec.git /tmp/su-exec \
-    && cd /tmp/su-exec \
-    && git checkout -b stable 212b751 \
-    && make \
-    && chown root:root ./su-exec \
-    && chmod 0755 ./su-exec \
-    && cp ./su-exec /usr/local/bin/su-exec
 
 ADD init.sh /init.sh
 RUN \
