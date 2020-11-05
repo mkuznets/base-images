@@ -128,9 +128,7 @@ class Docker:
 
     @staticmethod
     def has_image(tag: str) -> bool:
-        output = subprocess.check_output(
-            ["docker", "images", "--format", "{{.Tag}}", tag]
-        )
+        output = subprocess.check_output(["docker", "images", "--format", "{{.Tag}}", tag])
         return bool(output.strip())
 
     @staticmethod
@@ -143,9 +141,7 @@ class Docker:
         return p.stdout.decode()
 
     @staticmethod
-    def _command(
-            args: Tuple[str, ...], sp_args: Dict[str, Any]
-    ) -> subprocess.CompletedProcess[bytes]:
+    def _command(args: Tuple[str, ...], sp_args: Dict[str, Any]) -> subprocess.CompletedProcess[bytes]:
         exec_args = ["docker", *args]
         logger.debug("Running: %s", exec_args)
         p = subprocess.run(exec_args, **sp_args)
@@ -153,10 +149,10 @@ class Docker:
         return p
 
     def __exit__(
-            self,
-            exc_type: Optional[Type[BaseException]],
-            exc_val: Optional[BaseException],
-            exc_tb: Optional[TracebackType],
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[TracebackType],
     ) -> None:
         if self.__logged_in:
             self.command("logout", self.repo.server)
@@ -250,12 +246,8 @@ def main(ref: str, push: bool, force: bool) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("ref", help="git tag in the format <image-name>/<version>")
-    parser.add_argument(
-        "--push", action="store_true", help="push built images to repositories"
-    )
-    parser.add_argument(
-        "--force", action="store_true", help="do not check image tag before push"
-    )
+    parser.add_argument("--push", action="store_true", help="push built images to repositories")
+    parser.add_argument("--force", action="store_true", help="do not check image tag before push")
 
     args_ = parser.parse_args()
     main(args_.ref, args_.push, args_.force)
