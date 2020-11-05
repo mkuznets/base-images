@@ -71,7 +71,7 @@ class Image:
                     aliases = version["aliases"]
 
         self.dockerfile: pathlib.Path = dockerfile
-        self.aliases: Tuple[str] = aliases
+        self.aliases: Tuple[str, ...] = aliases
 
     @property
     def tmp_tag(self) -> str:
@@ -144,7 +144,7 @@ class Docker:
 
     @staticmethod
     def _command(
-            args: Tuple[str], sp_args: Dict[str, Any]
+            args: Tuple[str, ...], sp_args: Dict[str, Any]
     ) -> subprocess.CompletedProcess[bytes]:
         exec_args = ["docker", *args]
         logger.debug("Running: %s", exec_args)
