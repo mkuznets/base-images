@@ -8,6 +8,9 @@ name: Build and push build-go image
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
 
     steps:
       - name: checkout
@@ -24,10 +27,9 @@ jobs:
       - name: build and push
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
         run: |
-          echo ${GHCR_TOKEN} | docker login ghcr.io -u mkuznets --password-stdin
-          echo ${DOCKER_TOKEN} | docker login -u mkznts --password-stdin
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u mkuznets --password-stdin
+          echo "${DOCKER_TOKEN}" | docker login -u mkznts --password-stdin
 
           cd build-go
           docker build . --platform linux/amd64 -t ghcr.io/mkuznets/build-go:latest
