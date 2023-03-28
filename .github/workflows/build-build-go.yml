@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "build-go/**"
 
 name: Build and push build-go image
 
