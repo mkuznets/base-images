@@ -1,19 +1,12 @@
-FROM golang:1.15.2-alpine3.12
+FROM golang:1.20.2-alpine
 
 LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/mkuznets/base-images"
 
-ENV \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64 \
-    GO111MODULE="on"
-
-RUN apk add --no-cache --update git bash curl && \
+RUN apk add --no-cache --update git bash curl make && \
     rm -rf /var/cache/apk/*
 
-RUN go version && \
-    wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.31.0 && \
-    golangci-lint --version && \
-    go get github.com/mattn/goveralls@v0.0.4 && \
-    go get github.com/rakyll/statik@v0.1.7
+ADD sqlite3-dummy /tmp/sqlite3-dummy
+RUN ls /tmp && cd /tmp/sqlite3-dummy && \
+    go build -ldflags='-extldflags "-static"' -o a.out . && \
+    rm -rf /tmp/sqlite3-dummy

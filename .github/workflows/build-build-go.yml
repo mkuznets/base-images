@@ -1,0 +1,40 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Build and push build-go image
+
+jobs:
+  build:
+    runs-on: ubuntu:latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64,arm
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: build and push
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+        run: |
+          echo ${GHCR_TOKEN} | docker login ghcr.io -u mkuznets --password-stdin
+          echo ${DOCKER_TOKEN} | docker login -u mkznts --password-stdin
+
+          cd build-go
+          docker build . --platform linux/amd64 -t ghcr.io/mkuznets/build-go:latest
+          TAG=`docker run -v $(pwd):/tmp -it --rm ghcr.io/mkuznets/build-go:latest /tmp/version.sh`
+          docker buildx build --platform linux/arm64,linux/amd64 \
+            -t ghcr.io/mkuznets/build-go:${TAG} \
+            -t ghcr.io/mkuznets/build-go:latest \
+            -t docker.io/mkznts/build-go:${TAG} \
+            -t docker.io/mkznts/build-go:latest \
+            --push .
