@@ -4,6 +4,7 @@ on:
       - master
     paths:
       - "build-go/**"
+  workflow_dispatch:
 
 name: Build and push build-go image
 
