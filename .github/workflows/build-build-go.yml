@@ -36,7 +36,7 @@ jobs:
           cd build-go
           docker build . --platform linux/amd64 -t ghcr.io/mkuznets/build-go:latest
           TAG=`docker run -v $(pwd):/tmp --rm ghcr.io/mkuznets/build-go:latest /tmp/version.sh`
-          docker buildx build --platform linux/arm64,linux/amd64 \
+          docker buildx build --platform linux/arm/v6,linux/arm64,linux/amd64 \
             -t ghcr.io/mkuznets/build-go:${TAG} \
             -t ghcr.io/mkuznets/build-go:latest \
             -t docker.io/mkznts/build-go:${TAG} \
