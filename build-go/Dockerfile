@@ -1,4 +1,4 @@
-FROM golang:1.20.2-alpine
+FROM golang:1.21.0-alpine
 
 LABEL maintainer="Max Kuznetsov <maks.kuznetsov@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/mkuznets/base-images"
